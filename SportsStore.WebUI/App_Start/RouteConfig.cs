@@ -18,7 +18,7 @@ namespace SportsStore.WebUI
                 url: "",        // Only matches empty URL (e.g. /)
                 defaults: new { controller = "Product", action = "List", category = (string)null, page = 1 }
             );
-
+                
             routes.MapRoute(
                 name: null,
                 url: "Page{page}",        // Matches Page1, Page2, Page123
