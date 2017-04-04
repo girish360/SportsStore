@@ -24,10 +24,10 @@ namespace SportsStore.UnitTests {
                 new Product { ProductID = 5, Name = "P5"},
             }.AsQueryable());
             ProductController target = new ProductController(mock.Object);
+            target.PageSize = 3;
 
             // Act
-            target.PageSize = 3;
-            ProductListViewModel viewModel = (ProductListViewModel)target.List(2).Model;
+            ProductListViewModel viewModel = (ProductListViewModel)target.List(null, 2).Model;
             Product[] prodArray = ((IEnumerable<Product>)viewModel.Products).ToArray<Product>();
 
             // Assert
@@ -68,7 +68,7 @@ namespace SportsStore.UnitTests {
             target.PageSize = 3;
 
             // Act
-            ProductListViewModel model = (ProductListViewModel)target.List(2).Model;
+            ProductListViewModel model = (ProductListViewModel)target.List(null, 2).Model;
 
             // Assert
             Assert.IsTrue(model.PagingInfo.CurrentPage == 2);
