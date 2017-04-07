@@ -91,5 +91,18 @@ namespace SportsStore.UnitTests {
             Assert.IsTrue(products[0].ProductID == 2 && products[0].Category == "Cat2");
             Assert.IsTrue(products[1].ProductID == 4 && products[1].Category == "Cat2");
         }
+
+        [TestMethod]
+        public void Generate_Category_Specific_Product_Count() {
+            // Arrange
+            ProductController target = new ProductController(mock.Object);
+
+            // Act
+            Assert.IsTrue(((ProductListViewModel)target.List("Cat1").Model).PagingInfo.TotalItems == 2);
+            Assert.IsTrue(((ProductListViewModel)target.List("Cat2").Model).PagingInfo.TotalItems == 2);
+            Assert.IsTrue(((ProductListViewModel)target.List("Cat3").Model).PagingInfo.TotalItems == 1);
+            Assert.IsTrue(((ProductListViewModel)target.List(null).Model).PagingInfo.TotalItems == 5);
+        }
+
     }
 }
