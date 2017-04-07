@@ -15,7 +15,7 @@ namespace SportsStore.UnitTests {
         private Mock<IProductRepository> mock;
 
         [TestInitialize]
-        public void InitializeRepo() {
+        public void TestInitialize() {
             // Arrange
             mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
@@ -27,6 +27,7 @@ namespace SportsStore.UnitTests {
             }.AsQueryable());
 
         }
+
         [TestMethod]
         public void Can_Paginate() {
             // Arrange
