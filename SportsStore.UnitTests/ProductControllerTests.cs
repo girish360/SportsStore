@@ -11,7 +11,7 @@ using SportsStore.WebUI.Models;
 
 namespace SportsStore.UnitTests {
     [TestClass]
-    public class ProductControllerTests {
+    public class ProductTests {
         private Mock<IProductRepository> mock;
 
         [TestInitialize]
