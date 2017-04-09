@@ -7,13 +7,6 @@ using System.Linq;
 namespace SportsStore.UnitTests {
     [TestClass]
     public class CartTests {
-        private Cart cart;
-
-        [TestInitialize]
-        public void TestInitialize() {
-
-        }
-
         [TestMethod]
         public void Can_Add_New_Lines() {
             // Arrange
