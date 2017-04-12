@@ -35,6 +35,10 @@ namespace SportsStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl = returnUrl });
         }
 
+        public PartialViewResult Summary(Cart cart) {
+            return PartialView(cart);
+        }
+
         public ViewResult Index(Cart cart, string returnUrl) {
             CartIndexViewModel viewModel = new CartIndexViewModel {
                 Cart = cart,
