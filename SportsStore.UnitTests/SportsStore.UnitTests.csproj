@@ -97,6 +97,7 @@
     <Compile Include="ProductControllerTests.cs" />
     <Compile Include="NavTests.cs" />
     <Compile Include="CartTests.cs" />
+    <Compile Include="CartControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
