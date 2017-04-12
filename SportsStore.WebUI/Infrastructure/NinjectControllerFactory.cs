@@ -4,6 +4,7 @@ using System;
 using System.Web.Routing;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Concrete;
+using System.Configuration;
 
 namespace SportsStore.WebUI.Infrastructure {
     public class NinjectControllerFactory : DefaultControllerFactory {
@@ -27,6 +28,11 @@ namespace SportsStore.WebUI.Infrastructure {
             //    new Product { Name = "Running shoes", Price = 95 }
             //}.AsQueryable());
             ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
+            ninjectKernel.Bind<IOrderProcessor>()
+                .To<EmailOrderProcessor>()
+                .WithConstructorArgument("settings", new EmailSettings {
+                    WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+                });
         }
     }
 }
