@@ -21,18 +21,13 @@ namespace SportsStore.WebUI.Infrastructure {
 
         private void AddBindings() {
             // put additional bindings here
-            //Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            //mock.Setup(m => m.Products).Returns(new List<Product> {
-            //    new Product { Name = "Football", Price = 25 },
-            //    new Product { Name = "Surf board", Price = 179 },
-            //    new Product { Name = "Running shoes", Price = 95 }
-            //}.AsQueryable());
             ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
             ninjectKernel.Bind<IOrderProcessor>()
                 .To<EmailOrderProcessor>()
                 .WithConstructorArgument("settings", new EmailSettings {
                     WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
                 });
+            ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }

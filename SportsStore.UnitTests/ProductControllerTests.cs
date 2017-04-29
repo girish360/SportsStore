@@ -21,7 +21,7 @@ namespace SportsStore.UnitTests {
             mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product { ProductID = 1, Name = "P1", Category = "Cat1" },
                 new Product { ProductID = 2, Name = "P2", Category = "Cat2" },
-                new Product { ProductID = 3, Name = "P3", Category = "Cat1" },
+                new Product { ProductID = 3, Name = "P3", Category = "Cat1", ImageData = new byte[] { }, ImageMimeType = "image/png" },
                 new Product { ProductID = 4, Name = "P4", Category = "Cat2" },
                 new Product { ProductID = 5, Name = "P5", Category = "Cat3" },
             }.AsQueryable());
@@ -105,5 +105,30 @@ namespace SportsStore.UnitTests {
             Assert.IsTrue(((ProductListViewModel)target.List(null).Model).PagingInfo.TotalItems == 5);
         }
 
+        [TestMethod]
+        public void Can_Retrieve_Image_Data() {
+            // Arrange
+            ProductController target = new ProductController(mock.Object);
+
+            // Act
+            FileContentResult result = target.GetImage(3);
+
+            // Assert - image was returned for a valid product.
+            Assert.IsNotNull(result);
+            // Assert - image was returned with a correct MIME type.
+            Assert.IsTrue(result.ContentType == "image/png");
+        }
+
+        [TestMethod]
+        public void Cannot_Retrieve_Image_Data_For_Invalid_Id() {
+            // Arrange
+            ProductController target = new ProductController(mock.Object);
+
+            // Act
+            FileContentResult result = target.GetImage(100);
+
+            // Assert
+            Assert.IsNull(result);
+        }
     }
 }

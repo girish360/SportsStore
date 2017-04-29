@@ -98,6 +98,8 @@
     <Compile Include="NavTests.cs" />
     <Compile Include="CartTests.cs" />
     <Compile Include="CartControllerTests.cs" />
+    <Compile Include="AdminControllerTests.cs" />
+    <Compile Include="AccountControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
