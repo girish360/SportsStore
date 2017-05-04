@@ -25,7 +25,7 @@ namespace SportsStore.Domain.Concrete {
 
         public void DeleteProduct(Product product) {
             context.Products.Remove(product);
-            context.SaveChanges();
+            context.SaveChanges(); 
         }
 
     }
