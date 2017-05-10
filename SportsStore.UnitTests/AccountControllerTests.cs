@@ -13,7 +13,7 @@ namespace SportsStore.UnitTests {
         public void Can_Login_With_Valid_Credentials() {
             // Arrange
             Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
-            mock.Setup(m => m.Authenticate("admin1", "admin")).Returns(true);
+            mock.Setup(m => m.Authenticate("admin", "admin")).Returns(true);
             AccountController target = new AccountController(mock.Object);
             LogOnViewModel viewModel = new LogOnViewModel { Username = "admin", Password = "admin" };
 
